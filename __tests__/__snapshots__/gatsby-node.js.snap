@@ -1,0 +1,112 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MarkdownRemark without date 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      Object {
+        "name": "draft",
+        "node": Object {
+          "frontmatter": Object {
+            "title": "post title",
+          },
+          "internal": Object {
+            "type": "MarkdownRemark",
+          },
+        },
+        "value": false,
+      },
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": undefined,
+    },
+  ],
+}
+`;
+
+exports[`draft should be false, (Same or Before) 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      Object {
+        "name": "draft",
+        "node": Object {
+          "frontmatter": Object {
+            "date": "2019-02-07",
+            "title": "post title",
+          },
+          "internal": Object {
+            "type": "MarkdownRemark",
+          },
+        },
+        "value": false,
+      },
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": undefined,
+    },
+  ],
+}
+`;
+
+exports[`draft should be false, (not production) 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      Object {
+        "name": "draft",
+        "node": Object {
+          "frontmatter": Object {
+            "date": "2019-02-07",
+            "title": "post title",
+          },
+          "internal": Object {
+            "type": "MarkdownRemark",
+          },
+        },
+        "value": false,
+      },
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": undefined,
+    },
+  ],
+}
+`;
+
+exports[`draft should be true 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      Object {
+        "name": "draft",
+        "node": Object {
+          "frontmatter": Object {
+            "date": "2019-02-07",
+            "title": "post title",
+          },
+          "internal": Object {
+            "type": "MarkdownRemark",
+          },
+        },
+        "value": true,
+      },
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": undefined,
+    },
+  ],
+}
+`;
