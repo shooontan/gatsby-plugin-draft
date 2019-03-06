@@ -27,6 +27,34 @@ exports[`MarkdownRemark without date 1`] = `
 }
 `;
 
+exports[`draft should be false (timezone) 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      Object {
+        "name": "draft",
+        "node": Object {
+          "frontmatter": Object {
+            "date": "2019-02-05",
+            "title": "post title",
+          },
+          "internal": Object {
+            "type": "MarkdownRemark",
+          },
+        },
+        "value": false,
+      },
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": undefined,
+    },
+  ],
+}
+`;
+
 exports[`draft should be false, (Same or Before) 1`] = `
 [MockFunction] {
   "calls": Array [
@@ -71,6 +99,34 @@ exports[`draft should be false, (not production) 1`] = `
           },
         },
         "value": false,
+      },
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": undefined,
+    },
+  ],
+}
+`;
+
+exports[`draft should be true (timezone) 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      Object {
+        "name": "draft",
+        "node": Object {
+          "frontmatter": Object {
+            "date": "2019-02-05 12:00",
+            "title": "post title",
+          },
+          "internal": Object {
+            "type": "MarkdownRemark",
+          },
+        },
+        "value": true,
       },
     ],
   ],

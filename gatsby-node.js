@@ -1,5 +1,8 @@
+const moment = require('moment-timezone');
+
 const defaultOptions = {
   fieldName: 'draft',
+  timezone: 'UTC',
 };
 
 exports.onCreateNode = ({ node, actions }, pluginOptions) => {
@@ -23,9 +26,9 @@ exports.onCreateNode = ({ node, actions }, pluginOptions) => {
     return;
   }
 
-  const nodeDate = new Date(node.frontmatter.date);
-  const nowDate = new Date();
-  const isDraft = nowDate.getTime() <= nodeDate.getTime();
+  const nodeDate = moment.tz(node.frontmatter.date, options.timezone);
+  const nowDate = moment().tz(options.timezone);
+  const isDraft = nowDate.isSameOrBefore(nodeDate);
 
   createNodeField({
     node,

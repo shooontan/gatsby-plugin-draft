@@ -125,6 +125,11 @@ module.exports = {
          * Default is 'draft'
          **/
         fieldName: 'released',
+        /**
+         * moment-timezone
+         * Default is 'UTC'
+         **/
+        timezone: 'Asia/Tokyo'
       },
     },
   ],

@@ -9,6 +9,9 @@
     "type": "git",
     "url": "https://github.com/shooontan/gatsby-plugin-draft.git"
   },
+  "dependencies": {
+    "moment-timezone": "^0.5.23"
+  },
   "devDependencies": {
     "jest": "^24.1.0",
     "mockdate": "^2.0.2",

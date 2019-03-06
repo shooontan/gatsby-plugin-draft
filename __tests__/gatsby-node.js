@@ -1,4 +1,5 @@
 const mockdate = require('mockdate');
+const moment = require('moment-timezone');
 const { onCreateNode } = require('../gatsby-node');
 
 test('not MarkdownRemark type node', () => {
@@ -44,7 +45,7 @@ test('MarkdownRemark without date', () => {
 });
 
 test('draft should be false, (Same or Before)', () => {
-  mockdate.set(new Date('2019-02-05'));
+  mockdate.set(moment.tz('2019-02-05', 'UTC'));
 
   const createNodeField = jest.fn();
   const actions = { createNodeField };
@@ -73,7 +74,7 @@ test('draft should be false, (Same or Before)', () => {
 });
 
 test('draft should be false, (not production)', () => {
-  mockdate.set(new Date('2019-02-09'));
+  mockdate.set(moment.tz('2019-02-09', 'UTC'));
 
   const createNodeField = jest.fn();
   const actions = { createNodeField };
@@ -102,7 +103,7 @@ test('draft should be false, (not production)', () => {
 });
 
 test('draft should be true', () => {
-  mockdate.set(new Date('2019-02-05'));
+  mockdate.set(moment.tz('2019-02-05', 'UTC'));
   const env = process.env.NODE_ENV;
   process.env.NODE_ENV = 'production';
 
@@ -123,6 +124,80 @@ test('draft should be true', () => {
     node,
     actions,
   });
+
+  expect(createNodeField).toMatchSnapshot();
+  expect(createNodeField.mock.calls[0][0].name).toBe('draft');
+  expect(createNodeField.mock.calls[0][0].value).toBeTruthy();
+  expect(createNodeField).toHaveBeenCalledTimes(1);
+
+  process.env.NODE_ENV = env;
+  mockdate.reset();
+});
+
+test('draft should be false (timezone)', () => {
+  mockdate.set(moment.tz('2019-02-05', 'UTC'));
+  const env = process.env.NODE_ENV;
+  process.env.NODE_ENV = 'production';
+
+  const createNodeField = jest.fn();
+  const actions = { createNodeField };
+
+  const node = {
+    internal: {
+      type: 'MarkdownRemark',
+    },
+    frontmatter: {
+      title: 'post title',
+      date: '2019-02-05',
+    },
+  };
+
+  onCreateNode(
+    {
+      node,
+      actions,
+    },
+    {
+      timezone: 'Asia/Tokyo',
+    }
+  );
+
+  expect(createNodeField).toMatchSnapshot();
+  expect(createNodeField.mock.calls[0][0].name).toBe('draft');
+  expect(createNodeField.mock.calls[0][0].value).toBeFalsy();
+  expect(createNodeField).toHaveBeenCalledTimes(1);
+
+  process.env.NODE_ENV = env;
+  mockdate.reset();
+});
+
+test('draft should be true (timezone)', () => {
+  mockdate.set(moment.tz('2019-02-05', 'UTC'));
+  const env = process.env.NODE_ENV;
+  process.env.NODE_ENV = 'production';
+
+  const createNodeField = jest.fn();
+  const actions = { createNodeField };
+
+  const node = {
+    internal: {
+      type: 'MarkdownRemark',
+    },
+    frontmatter: {
+      title: 'post title',
+      date: '2019-02-05 12:00',
+    },
+  };
+
+  onCreateNode(
+    {
+      node,
+      actions,
+    },
+    {
+      timezone: 'Asia/Tokyo',
+    }
+  );
 
   expect(createNodeField).toMatchSnapshot();
   expect(createNodeField.mock.calls[0][0].name).toBe('draft');
