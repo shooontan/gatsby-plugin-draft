@@ -27,6 +27,62 @@ exports[`MarkdownRemark without date 1`] = `
 }
 `;
 
+exports[`draft set to true should be ignored for default options 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      Object {
+        "name": "draft",
+        "node": Object {
+          "frontmatter": Object {
+            "draft": true,
+            "title": "post title",
+          },
+          "internal": Object {
+            "type": "MarkdownRemark",
+          },
+        },
+        "value": false,
+      },
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": undefined,
+    },
+  ],
+}
+`;
+
+exports[`draft set to true should be respected if enabled 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      Object {
+        "name": "draft",
+        "node": Object {
+          "frontmatter": Object {
+            "draft": true,
+            "title": "post title",
+          },
+          "internal": Object {
+            "type": "MarkdownRemark",
+          },
+        },
+        "value": true,
+      },
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": undefined,
+    },
+  ],
+}
+`;
+
 exports[`draft should be false (timezone) 1`] = `
 [MockFunction] {
   "calls": Array [
@@ -148,6 +204,35 @@ exports[`draft should be true 1`] = `
         "node": Object {
           "frontmatter": Object {
             "date": "2019-02-07",
+            "title": "post title",
+          },
+          "internal": Object {
+            "type": "MarkdownRemark",
+          },
+        },
+        "value": true,
+      },
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": undefined,
+    },
+  ],
+}
+`;
+
+exports[`draft should be true, if explicitly set, even if the date is past 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      Object {
+        "name": "draft",
+        "node": Object {
+          "frontmatter": Object {
+            "date": "2019-02-07",
+            "draft": true,
             "title": "post title",
           },
           "internal": Object {

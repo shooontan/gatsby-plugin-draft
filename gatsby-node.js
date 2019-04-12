@@ -3,6 +3,7 @@ const moment = require('moment-timezone');
 const defaultOptions = {
   fieldName: 'draft',
   timezone: 'UTC',
+  respectExplicitDraft: false
 };
 
 exports.onCreateNode = ({ node, actions }, pluginOptions) => {
@@ -17,18 +18,23 @@ exports.onCreateNode = ({ node, actions }, pluginOptions) => {
     return;
   }
 
+  let isExplicitDraftEnabledAndSet = (  options.respectExplicitDraft &&
+                                        node.frontmatter &&
+                                        node.frontmatter.draft
+                                      )
+
   if (!node.frontmatter || !node.frontmatter.date) {
     createNodeField({
       node,
       name: options.fieldName,
-      value: false,
+      value: false || isExplicitDraftEnabledAndSet
     });
     return;
   }
 
   const nodeDate = moment.tz(node.frontmatter.date, options.timezone);
   const nowDate = moment().tz(options.timezone);
-  const isDraft = nowDate.isSameOrBefore(nodeDate);
+  const isDraft = isExplicitDraftEnabledAndSet || nowDate.isSameOrBefore(nodeDate);
 
   createNodeField({
     node,
