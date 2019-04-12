@@ -218,16 +218,19 @@ test('draft set to true should be respected if enabled', () => {
     },
     frontmatter: {
       title: 'post title',
-      draft: true
+      draft: true,
     },
   };
 
-  const pluginOptions = { respectExplicitDraft: true }
+  const pluginOptions = { respectExplicitDraft: true };
 
-  onCreateNode({
-    node,
-    actions,
-  }, pluginOptions);
+  onCreateNode(
+    {
+      node,
+      actions,
+    },
+    pluginOptions
+  );
 
   expect(createNodeField).toMatchSnapshot();
   expect(createNodeField.mock.calls[0][0].name).toBe('draft');
@@ -245,7 +248,7 @@ test('draft set to true should be ignored for default options', () => {
     },
     frontmatter: {
       title: 'post title',
-      draft: true
+      draft: true,
     },
   };
 
@@ -279,12 +282,15 @@ test('draft should be true, if explicitly set, even if the date is past', () => 
     },
   };
 
-  const pluginOptions = { respectExplicitDraft: true}
+  const pluginOptions = { respectExplicitDraft: true };
 
-  onCreateNode({
-    node,
-    actions,
-  }, pluginOptions);
+  onCreateNode(
+    {
+      node,
+      actions,
+    },
+    pluginOptions
+  );
 
   expect(createNodeField).toMatchSnapshot();
   expect(createNodeField.mock.calls[0][0].name).toBe('draft');
