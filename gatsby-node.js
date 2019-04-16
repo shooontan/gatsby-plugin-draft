@@ -3,7 +3,7 @@ const moment = require('moment-timezone');
 const defaultOptions = {
   fieldName: 'draft',
   timezone: 'UTC',
-  respectExplicitDraft: false,
+  publishDraft: false,
 };
 
 exports.onCreateNode = ({ node, actions }, pluginOptions) => {
@@ -18,26 +18,42 @@ exports.onCreateNode = ({ node, actions }, pluginOptions) => {
     return;
   }
 
-  let isExplicitDraftEnabledAndSet =
-    options.respectExplicitDraft && node.frontmatter && node.frontmatter.draft;
-
-  if (!node.frontmatter || !node.frontmatter.date) {
+  if (!node.frontmatter || options.publishDraft === true) {
     createNodeField({
       node,
       name: options.fieldName,
-      value: false || isExplicitDraftEnabledAndSet,
+      value: false,
     });
     return;
   }
 
-  const nodeDate = moment.tz(node.frontmatter.date, options.timezone);
+  const { date, draft } = node.frontmatter;
+
+  if (draft === true) {
+    createNodeField({
+      node,
+      name: options.fieldName,
+      value: true,
+    });
+    return;
+  }
+
+  if (!date) {
+    createNodeField({
+      node,
+      name: options.fieldName,
+      value: false,
+    });
+    return;
+  }
+
+  const nodeDate = moment.tz(date, options.timezone);
   const nowDate = moment().tz(options.timezone);
-  const isDraft =
-    isExplicitDraftEnabledAndSet || nowDate.isSameOrBefore(nodeDate);
+  const isDraft = nowDate.isSameOrBefore(nodeDate);
 
   createNodeField({
     node,
     name: options.fieldName,
-    value: isDraft && process.env.NODE_ENV === 'production',
+    value: isDraft,
   });
 };

@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`MarkdownRemark without date 1`] = `
+exports[`MarkdownRemark without date or dtaft 1`] = `
 [MockFunction] {
   "calls": Array [
     Array [
@@ -27,7 +27,31 @@ exports[`MarkdownRemark without date 1`] = `
 }
 `;
 
-exports[`draft set to true should be ignored for default options 1`] = `
+exports[`MarkdownRemark without frontmatter 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      Object {
+        "name": "draft",
+        "node": Object {
+          "internal": Object {
+            "type": "MarkdownRemark",
+          },
+        },
+        "value": false,
+      },
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": undefined,
+    },
+  ],
+}
+`;
+
+exports[`draft should be false if frontmatter draft is false 1`] = `
 [MockFunction] {
   "calls": Array [
     Array [
@@ -35,7 +59,7 @@ exports[`draft set to true should be ignored for default options 1`] = `
         "name": "draft",
         "node": Object {
           "frontmatter": Object {
-            "draft": true,
+            "draft": false,
             "title": "post title",
           },
           "internal": Object {
@@ -55,7 +79,7 @@ exports[`draft set to true should be ignored for default options 1`] = `
 }
 `;
 
-exports[`draft set to true should be respected if enabled 1`] = `
+exports[`draft should be false if frontmatter draft is false and date is past time 1`] = `
 [MockFunction] {
   "calls": Array [
     Array [
@@ -63,14 +87,15 @@ exports[`draft set to true should be respected if enabled 1`] = `
         "name": "draft",
         "node": Object {
           "frontmatter": Object {
-            "draft": true,
+            "date": "2019-02-07",
+            "draft": false,
             "title": "post title",
           },
           "internal": Object {
             "type": "MarkdownRemark",
           },
         },
-        "value": true,
+        "value": false,
       },
     ],
   ],
@@ -83,7 +108,7 @@ exports[`draft set to true should be respected if enabled 1`] = `
 }
 `;
 
-exports[`draft should be false (timezone) 1`] = `
+exports[`draft should be false in specific timezone 1`] = `
 [MockFunction] {
   "calls": Array [
     Array [
@@ -111,91 +136,7 @@ exports[`draft should be false (timezone) 1`] = `
 }
 `;
 
-exports[`draft should be false, (Same or Before) 1`] = `
-[MockFunction] {
-  "calls": Array [
-    Array [
-      Object {
-        "name": "draft",
-        "node": Object {
-          "frontmatter": Object {
-            "date": "2019-02-07",
-            "title": "post title",
-          },
-          "internal": Object {
-            "type": "MarkdownRemark",
-          },
-        },
-        "value": false,
-      },
-    ],
-  ],
-  "results": Array [
-    Object {
-      "type": "return",
-      "value": undefined,
-    },
-  ],
-}
-`;
-
-exports[`draft should be false, (not production) 1`] = `
-[MockFunction] {
-  "calls": Array [
-    Array [
-      Object {
-        "name": "draft",
-        "node": Object {
-          "frontmatter": Object {
-            "date": "2019-02-07",
-            "title": "post title",
-          },
-          "internal": Object {
-            "type": "MarkdownRemark",
-          },
-        },
-        "value": false,
-      },
-    ],
-  ],
-  "results": Array [
-    Object {
-      "type": "return",
-      "value": undefined,
-    },
-  ],
-}
-`;
-
-exports[`draft should be true (timezone) 1`] = `
-[MockFunction] {
-  "calls": Array [
-    Array [
-      Object {
-        "name": "draft",
-        "node": Object {
-          "frontmatter": Object {
-            "date": "2019-02-05 12:00",
-            "title": "post title",
-          },
-          "internal": Object {
-            "type": "MarkdownRemark",
-          },
-        },
-        "value": true,
-      },
-    ],
-  ],
-  "results": Array [
-    Object {
-      "type": "return",
-      "value": undefined,
-    },
-  ],
-}
-`;
-
-exports[`draft should be true 1`] = `
+exports[`draft should be true if frontmatter date time is same or after build time 1`] = `
 [MockFunction] {
   "calls": Array [
     Array [
@@ -223,7 +164,121 @@ exports[`draft should be true 1`] = `
 }
 `;
 
-exports[`draft should be true, if explicitly set, even if the date is past 1`] = `
+exports[`draft should be true if frontmatter draft is true 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      Object {
+        "name": "draft",
+        "node": Object {
+          "frontmatter": Object {
+            "draft": true,
+            "title": "post title",
+          },
+          "internal": Object {
+            "type": "MarkdownRemark",
+          },
+        },
+        "value": true,
+      },
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": undefined,
+    },
+  ],
+}
+`;
+
+exports[`draft should be true if frontmatter draft is true, even if frontmatter date is past 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      Object {
+        "name": "draft",
+        "node": Object {
+          "frontmatter": Object {
+            "date": "2019-02-07",
+            "draft": true,
+            "title": "post title",
+          },
+          "internal": Object {
+            "type": "MarkdownRemark",
+          },
+        },
+        "value": true,
+      },
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": undefined,
+    },
+  ],
+}
+`;
+
+exports[`draft should be true in specific timezone 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      Object {
+        "name": "draft",
+        "node": Object {
+          "frontmatter": Object {
+            "date": "2019-02-05T12:00",
+            "title": "post title",
+          },
+          "internal": Object {
+            "type": "MarkdownRemark",
+          },
+        },
+        "value": true,
+      },
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": undefined,
+    },
+  ],
+}
+`;
+
+exports[`draft should false if publishDraft option is true 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      Object {
+        "name": "draft",
+        "node": Object {
+          "frontmatter": Object {
+            "date": "2019-02-07",
+            "draft": true,
+            "title": "post title",
+          },
+          "internal": Object {
+            "type": "MarkdownRemark",
+          },
+        },
+        "value": false,
+      },
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": undefined,
+    },
+  ],
+}
+`;
+
+exports[`draft should true if publishDraft option is false 1`] = `
 [MockFunction] {
   "calls": Array [
     Array [
