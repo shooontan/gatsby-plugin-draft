@@ -2,7 +2,7 @@
 
 [![npm version](https://img.shields.io/npm/v/gatsby-plugin-draft.svg)](https://www.npmjs.com/package/gatsby-plugin-draft)
 [![install size](https://packagephobia.now.sh/badge?p=gatsby-plugin-draft)](https://packagephobia.now.sh/result?p=gatsby-plugin-draft)
-[![Build Status](https://travis-ci.com/shooontan/gatsby-plugin-draft.svg?branch=master)](https://travis-ci.org/shooontan/gatsby-plugin-draft)
+[![Build Status](https://travis-ci.com/shooontan/gatsby-plugin-draft.svg?branch=master)](https://travis-ci.com/shooontan/gatsby-plugin-draft)
 
 
 GatsbyJS Plugin for adding draft field to node.
@@ -79,6 +79,31 @@ exports.createPages = ({ graphql, actions }) => {
 };
 ```
 
+### pages/index.js
+
+Add filter in each pages.
+
+```js
+export const query = graphql`
+  query IndexQuery {
+    site {
+      siteMetadata {
+        title
+      }
+    }
+    allMarkdownRemark(
+      filter: { fields: { draft: { eq: false } } } # here
+    ) {
+      edges {
+        node {
+          excerpt
+        }
+      }
+    }
+  }
+`;
+```
+
 Let's say you have the following content. If you run `gatsby build` on Feb 22. 2019, the First Post will be published, but Second-Post will not be published.
 
 If you build on Feb 26. 2019, both post will be published.
@@ -130,7 +155,7 @@ module.exports = {
          * be added field name
          * Default is 'draft'
          **/
-        fieldName: 'released',
+        fieldName: 'notReleased',
         /**
          * moment-timezone
          * Default is 'UTC'
