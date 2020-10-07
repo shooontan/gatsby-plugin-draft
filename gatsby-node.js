@@ -14,7 +14,7 @@ exports.onCreateNode = ({ node, actions }, pluginOptions) => {
     ...pluginOptions,
   };
 
-  if (node.internal.type !== 'MarkdownRemark') {
+  if (!['MarkdownRemark', 'Mdx'].includes(node.internal.type)) {
     return;
   }
 
