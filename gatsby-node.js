@@ -1,12 +1,20 @@
 const moment = require('moment-timezone');
+const { get } = require('./utils');
 
 const defaultOptions = {
   fieldName: 'draft',
   timezone: 'UTC',
+  nodeType: 'MarkdownRemark',
+  datePath: node => node.frontmatter.date,
+  draftPath: node => node.frontmatter.draft,
   publishDraft: false,
 };
 
-exports.onCreateNode = ({ node, actions }, pluginOptions) => {
+/**
+ * @param {object}
+ * @param {defaultOptions} pluginOptions
+ */
+exports.onCreateNode = ({ node, actions, reporter }, pluginOptions) => {
   const { createNodeField } = actions;
 
   const options = {
@@ -14,11 +22,12 @@ exports.onCreateNode = ({ node, actions }, pluginOptions) => {
     ...pluginOptions,
   };
 
-  if (!['MarkdownRemark', 'Mdx'].includes(node.internal.type)) {
+  if (node.internal.type !== options.nodeType) {
     return;
   }
 
-  if (!node.frontmatter || options.publishDraft === true) {
+  // all node is not draft if publishDraft option is `true`
+  if (options.publishDraft === true) {
     createNodeField({
       node,
       name: options.fieldName,
@@ -27,8 +36,10 @@ exports.onCreateNode = ({ node, actions }, pluginOptions) => {
     return;
   }
 
-  const { date, draft } = node.frontmatter;
+  const date = get(() => options.datePath(node));
+  const draft = get(() => options.draftPath(node));
 
+  // node follows draftPath value
   if (draft === true) {
     createNodeField({
       node,
@@ -38,6 +49,7 @@ exports.onCreateNode = ({ node, actions }, pluginOptions) => {
     return;
   }
 
+  // node is draft if datePath value does not exist
   if (!date) {
     createNodeField({
       node,
@@ -47,6 +59,7 @@ exports.onCreateNode = ({ node, actions }, pluginOptions) => {
     return;
   }
 
+  // set draft flag after comparing date value
   const nodeDate = moment.tz(date, options.timezone);
   const nowDate = moment().tz(options.timezone);
   const isDraft = nowDate.isSameOrBefore(nodeDate);
