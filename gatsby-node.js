@@ -5,8 +5,8 @@ const defaultOptions = {
   fieldName: 'draft',
   timezone: 'UTC',
   nodeType: 'MarkdownRemark',
-  datePath: node => node.frontmatter.date,
-  draftPath: node => node.frontmatter.draft,
+  pickDate: node => node.frontmatter.date,
+  pickDraft: node => node.frontmatter.draft,
   publishDraft: false,
 };
 
@@ -36,10 +36,10 @@ exports.onCreateNode = ({ node, actions, reporter }, pluginOptions) => {
     return;
   }
 
-  const date = get(() => options.datePath(node));
-  const draft = get(() => options.draftPath(node));
+  const date = get(() => options.pickDate(node));
+  const draft = get(() => options.pickDraft(node));
 
-  // node follows draftPath value
+  // node follows 'draft' value
   if (draft === true) {
     createNodeField({
       node,
@@ -49,7 +49,7 @@ exports.onCreateNode = ({ node, actions, reporter }, pluginOptions) => {
     return;
   }
 
-  // node is draft if datePath value does not exist
+  // node is draft if 'draft' value does not exist
   if (!date) {
     createNodeField({
       node,

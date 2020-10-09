@@ -274,17 +274,19 @@ module.exports = {
          * Date information. [Optional]
          *
          * Type: function
+         *   - node: Gatsby's data node. https://www.gatsbyjs.com/docs/node-interface/
          * Default: node => node.frontmatter.date
          **/
-        datePath: node => node.exports.metadata.publishedAt,
+        pickDate: node => node.metadata.publishedAt,
 
         /**
          * Draft information. [Optional]
          *
          * Type: function
+         *   - node: Gatsby's data node. https://www.gatsbyjs.com/docs/node-interface/
          * Default: node => node.frontmatter.draft
          **/
-        draftPath: node => node.exports.metadata.isDraft,
+        pickDraft: node => node.metadata.isDraft,
 
         /**
          * publish draft posts [Optional]

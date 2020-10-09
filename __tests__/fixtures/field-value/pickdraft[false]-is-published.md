@@ -4,7 +4,7 @@ isDraft: false
 
 # for test
 pluginOptions:
-  draftPath: 'node.frontmatter.isDraft' # convert `node => node.frontmatter.isDraft`
+  pickDraft: 'node.frontmatter.isDraft' # convert `node => node.frontmatter.isDraft`
 mockdate:
   - "2020-01-01"
 expected:

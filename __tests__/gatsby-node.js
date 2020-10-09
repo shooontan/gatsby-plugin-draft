@@ -62,28 +62,28 @@ describe.each(fieldValueMock)('draft field value: %s', mock => {
     mockdate.set(moment.tz(time, tz));
   }
 
-  // datePath option
-  if (pluginOptions && pluginOptions.datePath) {
-    const datePathStr = pluginOptions.datePath;
-    pluginOptions.datePath = node => {
+  // pickDate option
+  if (pluginOptions && pluginOptions.pickDate) {
+    const pickDateStr = pluginOptions.pickDate;
+    pluginOptions.pickDate = node => {
       let result = {
         node,
       };
-      datePathStr.split('.').forEach(seg => {
+      pickDateStr.split('.').forEach(seg => {
         result = result[seg];
       });
       return result;
     };
   }
 
-  // draftPath option
-  if (pluginOptions && pluginOptions.draftPath) {
-    const draftPathStr = pluginOptions.draftPath;
-    pluginOptions.draftPath = node => {
+  // pickDraft option
+  if (pluginOptions && pluginOptions.pickDraft) {
+    const pickDraftStr = pluginOptions.pickDraft;
+    pluginOptions.pickDraft = node => {
       let result = {
         node,
       };
-      draftPathStr.split('.').forEach(seg => {
+      pickDraftStr.split('.').forEach(seg => {
         result = result[seg];
       });
       return result;
