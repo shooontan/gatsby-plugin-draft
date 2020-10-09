@@ -28,7 +28,8 @@
   },
   "files": [
     "index.js",
-    "gatsby-node.js"
+    "gatsby-node.js",
+    "utils.js"
   ],
   "keywords": [
     "gatsby",
