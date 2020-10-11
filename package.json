@@ -1,6 +1,6 @@
 {
   "name": "gatsby-plugin-draft",
-  "version": "0.0.5",
+  "version": "0.1.0",
   "description": "Gatsby plugin for adding draft field",
   "main": "index.js",
   "license": "MIT",
