@@ -1,0 +1,26 @@
+{
+  "name": "gatsbt-plugin-draft-example",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "gatsby develop",
+    "build": "gatsby build",
+    "restapi": "serve content -p 8008"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@mdx-js/mdx": "^1.6.18",
+    "@mdx-js/react": "^1.6.18",
+    "gatsby": "^2.24.69",
+    "gatsby-plugin-draft": "^0.1.0",
+    "gatsby-plugin-mdx": "^1.2.45",
+    "gatsby-source-custom-api": "^2.1.4",
+    "gatsby-source-filesystem": "^2.3.33",
+    "gatsby-transformer-remark": "^2.8.38",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "serve": "^11.3.2"
+  }
+}

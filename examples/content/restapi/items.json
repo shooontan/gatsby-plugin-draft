@@ -1,0 +1,21 @@
+[
+  {
+    "id": 101,
+    "title": "Anpan",
+    "publishedAt": "2000-01-01T00:00:00.000Z",
+    "body": "Sweet roll"
+  },
+  {
+    "id": 102,
+    "title": "Kintaro Ame",
+    "publishedAt": "2101-01-01T00:00:00.000Z",
+    "body": "Candy"
+  },
+  {
+    "id": 103,
+    "title": "Imokenpi",
+    "publishedAt": "2020-01-01T00:00:00.000Z",
+    "body": "Sweet potato chips",
+    "draft": true
+  }
+]
