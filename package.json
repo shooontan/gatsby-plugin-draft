@@ -10,7 +10,7 @@
     "url": "https://github.com/shooontan/gatsby-plugin-draft.git"
   },
   "dependencies": {
-    "moment-timezone": "^0.5.23"
+    "moment-timezone": "^0.5.33"
   },
   "devDependencies": {
     "glob": "^7.1.6",
