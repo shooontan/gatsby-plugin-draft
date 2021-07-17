@@ -2,7 +2,7 @@
 
 [![npm version](https://img.shields.io/npm/v/gatsby-plugin-draft.svg)](https://www.npmjs.com/package/gatsby-plugin-draft)
 [![install size](https://packagephobia.now.sh/badge?p=gatsby-plugin-draft)](https://packagephobia.now.sh/result?p=gatsby-plugin-draft)
-[![Build Status](https://travis-ci.com/shooontan/gatsby-plugin-draft.svg?branch=master)](https://travis-ci.com/shooontan/gatsby-plugin-draft)
+[![test](https://github.com/shooontan/gatsby-plugin-draft/actions/workflows/test.yml/badge.svg)](https://github.com/shooontan/gatsby-plugin-draft/actions/workflows/test.yml)
 
 
 GatsbyJS Plugin for adding draft field to node.
