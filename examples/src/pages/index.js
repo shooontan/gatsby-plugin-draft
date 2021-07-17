@@ -1,8 +1,8 @@
 import React from 'react';
 import { graphql, Link } from 'gatsby';
 
-const IndexPage = props => {
-  const mdPosts = props.data.allMarkdownRemark.nodes.map(node => {
+const IndexPage = (props) => {
+  const mdPosts = props.data.allMarkdownRemark.nodes.map((node) => {
     return (
       <div key={node.fields.slug}>
         <Link to={node.fields.slug}>{node.frontmatter.title}</Link>
@@ -11,7 +11,7 @@ const IndexPage = props => {
     );
   });
 
-  const mdxPosts = props.data.allMdx.nodes.map(node => {
+  const mdxPosts = props.data.allMdx.nodes.map((node) => {
     return (
       <div key={node.fields.slug}>
         <Link to={node.fields.slug}>{node.frontmatter.title}</Link>
@@ -20,7 +20,7 @@ const IndexPage = props => {
     );
   });
 
-  const sweetPosts = props.data.allSweet.nodes.map(node => {
+  const sweetPosts = props.data.allSweet.nodes.map((node) => {
     return (
       <div key={node.fields.slug}>
         <Link to={node.fields.slug}>{node.title}</Link>

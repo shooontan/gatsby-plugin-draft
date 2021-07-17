@@ -1,7 +1,7 @@
 import React from 'react';
 import { graphql } from 'gatsby';
 
-const RestAPIPost = props => {
+const RestAPIPost = (props) => {
   const { sweet } = props.data;
   return (
     <div>

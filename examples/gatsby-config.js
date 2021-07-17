@@ -51,8 +51,8 @@ module.exports = {
       resolve: 'gatsby-plugin-draft',
       options: {
         nodeType: 'Sweet',
-        pickDate: node => node.publishedAt,
-        pickDraft: node => node.draft,
+        pickDate: (node) => node.publishedAt,
+        pickDraft: (node) => node.draft,
       },
     },
   ],

@@ -5,8 +5,8 @@ const defaultOptions = {
   fieldName: 'draft',
   timezone: 'UTC',
   nodeType: 'MarkdownRemark',
-  pickDate: node => node.frontmatter.date,
-  pickDraft: node => node.frontmatter.draft,
+  pickDate: (node) => node.frontmatter.date,
+  pickDraft: (node) => node.frontmatter.draft,
   publishDraft: false,
 };
 
@@ -14,7 +14,7 @@ const defaultOptions = {
  * @param {object}
  * @param {defaultOptions} pluginOptions
  */
-exports.onCreateNode = ({ node, actions, reporter }, pluginOptions) => {
+exports.onCreateNode = ({ node, actions }, pluginOptions) => {
   const { createNodeField } = actions;
 
   const options = {

@@ -1,7 +1,7 @@
 import React from 'react';
 import { graphql } from 'gatsby';
 
-const MarkdownPost = props => {
+const MarkdownPost = (props) => {
   const { markdownRemark } = props.data;
   const html = props.data.markdownRemark.html;
   return (

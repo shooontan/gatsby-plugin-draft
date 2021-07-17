@@ -22,7 +22,7 @@ function getMocks(pattern) {
 const internalTypeMock = getMocks('internal-type');
 const fieldValueMock = getMocks('field-value');
 
-describe.each(internalTypeMock)('internal type: %s', mock => {
+describe.each(internalTypeMock)('internal type: %s', (mock) => {
   const content = loadContent(mock);
   const { pluginOptions, nodeType, expected } = content.data;
 
@@ -49,7 +49,7 @@ describe.each(internalTypeMock)('internal type: %s', mock => {
   mockdate.reset();
 });
 
-describe.each(fieldValueMock)('draft field value: %s', mock => {
+describe.each(fieldValueMock)('draft field value: %s', (mock) => {
   moment.tz.setDefault('UTC');
 
   const content = loadContent(mock);
@@ -65,11 +65,11 @@ describe.each(fieldValueMock)('draft field value: %s', mock => {
   // pickDate option
   if (pluginOptions && pluginOptions.pickDate) {
     const pickDateStr = pluginOptions.pickDate;
-    pluginOptions.pickDate = node => {
+    pluginOptions.pickDate = (node) => {
       let result = {
         node,
       };
-      pickDateStr.split('.').forEach(seg => {
+      pickDateStr.split('.').forEach((seg) => {
         result = result[seg];
       });
       return result;
@@ -79,11 +79,11 @@ describe.each(fieldValueMock)('draft field value: %s', mock => {
   // pickDraft option
   if (pluginOptions && pluginOptions.pickDraft) {
     const pickDraftStr = pluginOptions.pickDraft;
-    pluginOptions.pickDraft = node => {
+    pluginOptions.pickDraft = (node) => {
       let result = {
         node,
       };
-      pickDraftStr.split('.').forEach(seg => {
+      pickDraftStr.split('.').forEach((seg) => {
         result = result[seg];
       });
       return result;

@@ -50,7 +50,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
     reporter.panic(result.errors);
   }
 
-  result.data.allMarkdownRemark.edges.forEach(post => {
+  result.data.allMarkdownRemark.edges.forEach((post) => {
     createPage({
       path: post.node.fields.slug,
       component: markdownTemplate,
@@ -60,7 +60,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
     });
   });
 
-  result.data.allMdx.edges.forEach(post => {
+  result.data.allMdx.edges.forEach((post) => {
     createPage({
       path: post.node.fields.slug,
       component: mdxTemplate,
@@ -70,7 +70,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
     });
   });
 
-  result.data.allSweet.edges.forEach(post => {
+  result.data.allSweet.edges.forEach((post) => {
     createPage({
       path: post.node.fields.slug,
       component: restapiTemplate,

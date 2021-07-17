@@ -2,7 +2,7 @@ import React from 'react';
 import { graphql } from 'gatsby';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
 
-const MdxPost = props => {
+const MdxPost = (props) => {
   const mdx = props.data.mdx;
 
   return (
