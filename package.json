@@ -15,7 +15,7 @@
   "devDependencies": {
     "glob": "^7.1.7",
     "gray-matter": "^4.0.3",
-    "jest": "^27.0.1",
+    "jest": "27.0.1",
     "mockdate": "^3.0.5",
     "prettier": "^2.3.0"
   },
