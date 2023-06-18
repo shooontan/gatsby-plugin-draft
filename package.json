@@ -4,7 +4,6 @@
   "description": "Gatsby plugin for adding draft field",
   "main": "index.js",
   "license": "MIT",
-  "private": false,
   "repository": {
     "type": "git",
     "url": "https://github.com/shooontan/gatsby-plugin-draft.git"
@@ -23,7 +22,7 @@
     "prettier": "^2.3.2"
   },
   "peerDependencies": {
-    "gatsby": "^3.0.0"
+    "gatsby": "3 - 5"
   },
   "scripts": {
     "lint": "eslint './**/*.js'",
@@ -41,5 +40,6 @@
     "draft",
     "released",
     "published"
-  ]
+  ],
+  "packageManager": "yarn@3.6.0"
 }
